@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💘</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Parisienne&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffafcc, #ffc8dd);
+}
+
+/* Falling Hearts */
+.heart {
+    position: absolute;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-10vh); opacity: 1; }
+    100% { transform: translateY(110vh); opacity: 0; }
+}
+
+/* Floating Flowers */
+.flower {
+    position: absolute;
+    font-size: 22px;
+    animation: floatFlowers linear infinite;
+}
+
+@keyframes floatFlowers {
+    0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+.container {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.envelope {
+    width: 380px;
+    height: 260px;
+    background: #ffffff;
+    position: relative;
+    border-radius: 18px;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+    cursor: pointer;
+    transition: 0.6s ease;
+}
+
+/* Decorative corner flowers */
+.corner-flower {
+    position: absolute;
+    font-size: 28px;
+}
+
+.top-left { top: -15px; left: -15px; }
+.top-right { top: -15px; right: -15px; }
+.bottom-left { bottom: -15px; left: -15px; }
+.bottom-right { bottom: -15px; right: -15px; }
+
+.flap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff8fab, #fb6f92);
+    clip-path: polygon(0 0, 100% 0, 50% 65%);
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    transition: 0.6s ease;
+}
+
+.letter {
+    position: absolute;
+    width: 92%;
+    height: 92%;
+    background: #fff0f3;
+    top: 4%;
+    left: 4%;
+    padding: 25px;
+    border-radius: 14px;
+    opacity: 0;
+    transition: 0.6s ease;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #c9184a;
+    margin-bottom: 15px;
+}
+
+.message {
+    font-family: 'Parisienne', cursive;
+    font-size: 20px;
+    color: #5a5a5a;
+    line-height: 1.5;
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+    transform-origin: top;
+}
+
+.envelope.open .letter {
+    opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="envelope" onclick="openEnvelope(this)">
+        
+        <!-- Decorative Flowers -->
+        <div class="corner-flower top-left">🌸</div>
+        <div class="corner-flower top-right">🌷</div>
+        <div class="corner-flower bottom-left">🌹</div>
+        <div class="corner-flower bottom-right">💐</div>
+
+        <div class="flap"></div>
+        <div class="letter">
+            <div class="message">February 8th, Propose Day 💗</div>
+
+            <div class="title">
+                Happy Propose Day, My Love 💘🫶
+            </div>
+
+            <div class="message">
+                Since we both are already a couple and there's no value for proposing again 
+                (basically this day in the Valentine's Week is useless for those people who are already in a relationship) 
+                So, can we be in a committed relationship and make it "official-official"? 💗 <br><br>
+
+                (huna ta i already committed js asking you because i wanted to make this Valentine's Week special 😭) <br><br>
+
+                ik i js made this website from ai since i am working on other things that ywk soon 💞💓
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function openEnvelope(element) {
+    element.classList.toggle("open");
+}
+
+/* Falling Hearts */
+function createHearts() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => { heart.remove(); }, 6000);
+}
+
+/* Floating Flowers */
+function createFlowers() {
+    const flower = document.createElement("div");
+    flower.classList.add("flower");
+    const flowers = ["🌸","🌷","🌹","💐"];
+    flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+    flower.style.left = Math.random() * 100 + "vw";
+    flower.style.animationDuration = (Math.random() * 6 + 6) + "s";
+    flower.style.fontSize = (Math.random() * 20 + 18) + "px";
+    document.body.appendChild(flower);
+
+    setTimeout(() => { flower.remove(); }, 12000);
+}
+
+setInterval(createHearts, 300);
+setInterval(createFlowers, 1500);
+</script>
+
+</body>
+</html>
